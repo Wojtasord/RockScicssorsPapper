@@ -14,7 +14,25 @@ public class Main {
         do {
             firstPlayer =  chooseMove();
         }while (firstPlayer == null);
+        do {
+            secondPlayer =  chooseMove();
+        }while (secondPlayer == null);
 
+        MovesStrategy winner = choseWinner(firstPlayer,secondPlayer);
+        if (winner == null){
+            System.out.println("It`s a tie!");
+        } else {
+            System.out.println("The Winner is "+winner);
+        }
+    }
+
+    private static MovesStrategy choseWinner(MovesStrategy firstPlayer, MovesStrategy secondPlayer) {
+        if (firstPlayer.isWinningWith(secondPlayer)) {
+            return firstPlayer;
+        } else if (secondPlayer.isWinningWith(firstPlayer)){
+            return secondPlayer;
+        }
+        return null;
     }
 
     private static MovesStrategy chooseMove() {
